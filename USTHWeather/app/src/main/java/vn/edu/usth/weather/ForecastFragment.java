@@ -1,5 +1,6 @@
 package vn.edu.usth.weather;
 
+import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,7 @@ public class ForecastFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private GestureOverlayView view;
 
     public ForecastFragment() {
         // Required empty public constructor
@@ -60,7 +65,23 @@ public class ForecastFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = new View(getContext());
         v.setBackgroundColor(0x20FF0000);
-        return v;
+
+        // create dynamic views in Fragment: A vertical LinearLayout (use LinearLayout’s setOrientation)
+        LinearLayout LL = new LinearLayout(getContext ());
+        LL.setOrientation(LinearLayout.VERTICAL);
+
+        // TextView (Thursday)
+        TextView day = new TextView(getContext());
+        day.setText("Thursday");
+        // ImageView (a weather icon)
+        ImageView img = new ImageView(getContext());
+        img.setImageResource(R.drawable.cloud);
+
+        LL.setOrientation(LinearLayout.VERTICAL);
+        LL.addView(day);
+        LL.addView(img);
+        LL.addView(v);
+        return LL;
         // Inflate the layout for this fragment
         // return inflater.inflate(R.layout.fragment_forecast, container, false);
     }
