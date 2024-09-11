@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Use LinearLayout to have the blue forecast area-->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="436dp"
     tools:context=".ForecastFragment"
-    android:background="#ADD8E6"
+
     tools:ignore="Extra Text">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,39 +14,11 @@
         android:orientation="vertical"
         android:padding="8dp">
 
+        <!--Use LinearLayout to have the blue forecast area-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#1c2caf"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="273dp"
-                android:layout_height="41dp"
-                android:paddingLeft="8px"
-                android:paddingRight="8px"
-                android:text="USTH Weather"
-                android:textColor="#ffffff" />
-
-            <ImageView
-                android:layout_width="44dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8px"
-                android:layout_marginRight="8px"
-                android:src="@drawable/refresh" />
-
-            <ImageView
-                android:layout_width="44dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="8px"
-                android:layout_marginRight="8px"
-                android:src="@drawable/setting" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="#ADD8E6"
             android:orientation="vertical"
             android:padding="8dp">
 
@@ -61,22 +32,22 @@
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
-                    android:text="Monday" />
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/mon" />
 
                 <ImageView
                     android:layout_width="44dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="8px"
-                    android:layout_marginRight="8px"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:src="@drawable/sun_with_cloud" />
 
                 <TextView
                     android:layout_width="122dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:text="Partly Cloudy\n24C - 31C" />
             </LinearLayout>
 
@@ -88,24 +59,24 @@
                 android:padding="8dp">
 
                 <TextView
-                    android:layout_width="70dp"
+                    android:layout_width="79dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
-                    android:text="Tuesday" />
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/tue" />
 
                 <ImageView
                     android:layout_width="44dp"
                     android:layout_height="41dp"
-                    android:layout_marginLeft="8px"
-                    android:layout_marginRight="8px"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:src="@drawable/rain" />
 
                 <TextView
                     android:layout_width="122dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:text="Showers\n24C - 30C" />
             </LinearLayout>
 
@@ -117,24 +88,24 @@
                 android:padding="8dp">
 
                 <TextView
-                    android:layout_width="70dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
-                    android:text="Wednesday" />
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/wed" />
 
                 <ImageView
                     android:layout_width="44dp"
                     android:layout_height="41dp"
-                    android:layout_marginLeft="8px"
-                    android:layout_marginRight="8px"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:src="@drawable/rain" />
 
                 <TextView
                     android:layout_width="122dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:text="Rain\n22C - 23C" />
             </LinearLayout>
 
@@ -146,24 +117,24 @@
                 android:padding="8dp">
 
                 <TextView
-                    android:layout_width="70dp"
+                    android:layout_width="86dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
-                    android:text="Thursday" />
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/thu" />
 
                 <ImageView
                     android:layout_width="44dp"
                     android:layout_height="41dp"
-                    android:layout_marginLeft="8px"
-                    android:layout_marginRight="8px"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:src="@drawable/sun_with_rain" />
 
                 <TextView
                     android:layout_width="190dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:text="Scattered Showers\n22C - 27C" />
             </LinearLayout>
 
@@ -177,22 +148,22 @@
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
-                    android:text="Friday" />
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/fri" />
 
                 <ImageView
                     android:layout_width="44dp"
                     android:layout_height="41dp"
-                    android:layout_marginLeft="8px"
-                    android:layout_marginRight="8px"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:src="@drawable/sun_rays_cloud" />
 
                 <TextView
                     android:layout_width="190dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:text="Mostly Cloudy\n22C - 30C" />
             </LinearLayout>
 
@@ -204,24 +175,24 @@
                 android:padding="8dp">
 
                 <TextView
-                    android:layout_width="70dp"
+                    android:layout_width="82dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
-                    android:text="Saturday" />
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/sat" />
 
                 <ImageView
                     android:layout_width="44dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="8px"
-                    android:layout_marginRight="8px"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:src="@drawable/sun_with_cloud" />
 
                 <TextView
                     android:layout_width="122dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:text="Partly Cloudy\n24C - 31C" />
             </LinearLayout>
 
@@ -235,22 +206,22 @@
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
-                    android:text="Sunday" />
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/sun" />
 
                 <ImageView
                     android:layout_width="44dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="8px"
-                    android:layout_marginRight="8px"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     android:src="@drawable/cloud_dark_lightning" />
 
                 <TextView
                     android:layout_width="122dp"
                     android:layout_height="41dp"
-                    android:paddingLeft="8px"
-                    android:paddingRight="8px"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     android:text="Thunderstorms\n25C - 28C" />
             </LinearLayout>
         </LinearLayout>
