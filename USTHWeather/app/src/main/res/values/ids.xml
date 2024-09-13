@@ -2,4 +2,5 @@
 <resources>
     <item name="toolbar" type="id" />
     <item name="fragment_forecast" type="id" />
+    <item name="pager" type="id" />
 </resources>

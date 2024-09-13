@@ -10,48 +10,46 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 public class WeatherActivity extends AppCompatActivity {
-
-    private static final String TAG = "WeatherActivity";
-
-    private DrawerLayout mDrawerLayout;
-    private Toolbar mToolbar;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_main);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
-//
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        //Remove WeatherFragment and ForecastFragment from WeatherActivity
 //        // Create a new Fragment to be placed in the activity
-//        ForecastFragment firstFragment = new ForecastFragment();
+//        WeatherFragment firstFragment = new WeatherFragment();
 //
 //        // Add the fragment to the 'container' FrameLayout
 //        getSupportFragmentManager().beginTransaction().add(
 //                R.id.activity_weather, firstFragment).commit();
-        super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate is called");
+//        // Create a new Fragment to be placed in the activity
+//        ForecastFragment secondFragment = new ForecastFragment();
+//
+//        // Add the fragment to the 'container' FrameLayout
+//        getSupportFragmentManager().beginTransaction().add(
+//                R.id.activity_weather, secondFragment).commit();
 
-        setContentView(R.layout.activity_weather);
+        // Add a ViewPager into WeatherActivity
+        PagerAdapter adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager());
+
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setOffscreenPageLimit(3);
+        pager.setAdapter(adapter);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // Create a new instance of ForecastFragment
-        ForecastFragment forecastFragment = new ForecastFragment();
-
-        // Add the fragment to the 'container' FrameLayout using dynamic code
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.fragment_forecast, forecastFragment).commit();
     }
 
     private void setSupportActionBar(Toolbar toolbar) {
