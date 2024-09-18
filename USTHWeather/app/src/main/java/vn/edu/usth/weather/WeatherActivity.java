@@ -3,14 +3,12 @@ package vn.edu.usth.weather;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toolbar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -19,16 +17,13 @@ import java.util.Objects;
 
 public class WeatherActivity extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager pager;
-
-//    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        setContentView(R.layout.activity_weather);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_weather), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -49,17 +44,8 @@ public class WeatherActivity extends AppCompatActivity {
 //                R.id.activity_weather, secondFragment).commit();
 
         // Add a ViewPager into WeatherActivity
-//        PagerAdapter adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager());
-//
-//        ViewPager pager = (ViewPager) findViewById(R.id.pager);
-//        if (pager == null) {
-//            Log.e("WeatherActivity", "ViewPager is null");
-//        }
-//        assert pager != null;
-//        pager.setOffscreenPageLimit(3);
-//        pager.setAdapter(adapter);
-        tabLayout = findViewById(R.id.tab);
-        pager = findViewById(R.id.pager);
+        TabLayout tabLayout = findViewById(R.id.tab);
+        ViewPager pager = findViewById(R.id.pager);
 
         HomeFragmentPagerAdapter adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);

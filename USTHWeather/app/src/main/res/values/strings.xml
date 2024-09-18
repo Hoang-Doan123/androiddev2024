@@ -10,4 +10,8 @@
     <string name="fri">Friday</string>
     <string name="sat">Saturday</string>
     <string name="sun">Sunday</string>
+    <string name="hanoi">Hanoi</string>
+    <string name="france">France</string>
+    <string name="toulose">Toulose</string>
+    <string name="vietnam">Vietnam</string>
 </resources>
