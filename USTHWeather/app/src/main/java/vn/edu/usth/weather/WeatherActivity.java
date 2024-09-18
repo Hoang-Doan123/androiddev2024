@@ -13,9 +13,16 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.Objects;
+
 public class WeatherActivity extends AppCompatActivity {
 
-    @SuppressLint("MissingInflatedId")
+    private TabLayout tabLayout;
+    private ViewPager pager;
+
+//    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,18 +49,33 @@ public class WeatherActivity extends AppCompatActivity {
 //                R.id.activity_weather, secondFragment).commit();
 
         // Add a ViewPager into WeatherActivity
-        PagerAdapter adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager());
+//        PagerAdapter adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager());
+//
+//        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+//        if (pager == null) {
+//            Log.e("WeatherActivity", "ViewPager is null");
+//        }
+//        assert pager != null;
+//        pager.setOffscreenPageLimit(3);
+//        pager.setAdapter(adapter);
+        tabLayout = findViewById(R.id.tab);
+        pager = findViewById(R.id.pager);
 
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(3);
+        HomeFragmentPagerAdapter adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        tabLayout.setupWithViewPager(pager);
+        Objects.requireNonNull(tabLayout.getTabAt(0));
+        Objects.requireNonNull(tabLayout.getTabAt(1));
+        Objects.requireNonNull(tabLayout.getTabAt(2));
+//
+////        Toolbar toolbar = findViewById(R.id.toolbar);
+////        setSupportActionBar(toolbar);
     }
 
-    private void setSupportActionBar(Toolbar toolbar) {
-    }
+//    private void setSupportActionBar(Toolbar toolbar) {
+//    }
+
 
     @Override
     protected void onStart() {

@@ -1,28 +1,28 @@
 package vn.edu.usth.weather;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import java.lang.reflect.Array;
-
 public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
-    private final int page_count = 3;
-    private String titles[] = new String[] { "Hanoi", "Paris", "Toulouse" };
+    private final String[] titles = new String[] { "Hanoi", "Paris", "Toulouse" };
     public HomeFragmentPagerAdapter(FragmentManager fm) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
     @Override
     public int getCount() {
-        return page_count; // number of pages for a ViewPager
+        return 3; // number of pages for a ViewPager
     }
+    @NonNull
     @Override
     public Fragment getItem(int page) {
         // returns an instance of Fragment corresponding to the specified page
         switch (page) {
-            case 0: return Fragment1.newInstance();
-            case 1: return Fragment2.newInstance();
-            case 2: return Fragment3.newInstance();
+            // Put 3 WeatherAndForecastFragments into the ViewPager
+            case 0: return WeatherAndForecastFragment.newInstance("Hanoi", "Vietnam");
+            case 1: return WeatherAndForecastFragment.newInstance("Paris", "France");
+            case 2: return WeatherAndForecastFragment.newInstance("Toulouse", "France");
         }
         return new EmptyFragment(); // failsafe
     }
