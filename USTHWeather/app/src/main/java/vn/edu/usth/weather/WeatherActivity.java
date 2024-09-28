@@ -1,8 +1,10 @@
 package vn.edu.usth.weather;
 
 import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.InputStream;
 import java.util.Objects;
 
 public class WeatherActivity extends AppCompatActivity {
@@ -57,6 +60,10 @@ public class WeatherActivity extends AppCompatActivity {
         Objects.requireNonNull(tabLayout.getTabAt(0));
         Objects.requireNonNull(tabLayout.getTabAt(1));
         Objects.requireNonNull(tabLayout.getTabAt(2));
+
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.music);
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true);
 
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
