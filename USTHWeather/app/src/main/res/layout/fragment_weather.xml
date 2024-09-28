@@ -11,22 +11,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="283dp"
-        android:background="@color/green">
-
+        android:background="@drawable/frame_patch">
+        <!-- Apply 9-patch frame (above) -->
         <TextView
             android:layout_width="70dp"
             android:layout_height="41dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="8dp"
             android:text="12C\nCloudy"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_alignParentEnd="true"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="18dp"
             android:text="@string/paris" />
 
         <ImageView
@@ -36,15 +36,5 @@
             android:layout_marginRight="8dp"
             android:src="@drawable/cloud"
             android:layout_centerInParent="true"/>
-
-        <!-- Apply 9-patch frame -->
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="283dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:src="@drawable/frame_patch"
-            android:layout_centerInParent="true"
-            android:rotation="90"/>
     </RelativeLayout>
 </RelativeLayout>
