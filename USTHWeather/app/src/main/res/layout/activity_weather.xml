@@ -44,7 +44,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#2136C8"
+            android:background="@color/blue"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab"
@@ -70,8 +70,8 @@
     <!-- Add a ViewPager into WeatherActivity -->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/zero"
+        android:layout_height="@dimen/zero"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

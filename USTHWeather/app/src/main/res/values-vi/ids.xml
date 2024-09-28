@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="toolbar" type="id" />
-    <item name="fragment_forecast" type="id" />
-    <item name="pager" type="id" />
-</resources>

@@ -6,9 +6,12 @@ import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -47,21 +50,17 @@ public class WeatherActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab);
         ViewPager pager = findViewById(R.id.pager);
 
-        HomeFragmentPagerAdapter adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager());
+        HomeFragmentPagerAdapter adapter = new HomeFragmentPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         pager.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(pager);
         Objects.requireNonNull(tabLayout.getTabAt(0));
         Objects.requireNonNull(tabLayout.getTabAt(1));
         Objects.requireNonNull(tabLayout.getTabAt(2));
-//
-////        Toolbar toolbar = findViewById(R.id.toolbar);
-////        setSupportActionBar(toolbar);
+
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
     }
-
-//    private void setSupportActionBar(Toolbar toolbar) {
-//    }
-
 
     @Override
     protected void onStart() {

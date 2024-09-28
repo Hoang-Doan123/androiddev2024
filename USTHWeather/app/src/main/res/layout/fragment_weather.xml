@@ -36,5 +36,15 @@
             android:layout_marginRight="8dp"
             android:src="@drawable/cloud"
             android:layout_centerInParent="true"/>
+
+        <!-- Apply 9-patch frame -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="283dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/frame_patch"
+            android:layout_centerInParent="true"
+            android:rotation="90"/>
     </RelativeLayout>
 </RelativeLayout>
