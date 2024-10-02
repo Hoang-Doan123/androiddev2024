@@ -14,4 +14,6 @@
     <string name="france">France</string>
     <string name="toulose">Toulose</string>
     <string name="vietnam">Vietnam</string>
+    <string name="refresh">Refresh</string>
+    <string name="setting">Setting</string>
 </resources>

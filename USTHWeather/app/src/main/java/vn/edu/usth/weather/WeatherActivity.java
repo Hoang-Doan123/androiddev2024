@@ -1,10 +1,13 @@
 package vn.edu.usth.weather;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,13 +15,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.InputStream;
 import java.util.Objects;
 
 public class WeatherActivity extends AppCompatActivity {
@@ -65,8 +66,36 @@ public class WeatherActivity extends AppCompatActivity {
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        // Use ToolBar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    // Inflate the menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    // Add two actions
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+            // Refresh (icon always visible):
+            if (id == R.id.refresh) {
+                // Show a toast
+                Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            // Settings (always in the overflow menu):
+            else if (id == R.id.setting) {
+                // Starts a new activity, PrefActivity
+                Intent intent = new Intent(this, PrefActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
