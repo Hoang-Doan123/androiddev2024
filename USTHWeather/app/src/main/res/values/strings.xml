@@ -12,11 +12,13 @@
     <string name="sun">Sunday</string>
     <string name="hanoi">Hanoi</string>
     <string name="france">France</string>
-    <string name="toulose">Toulose</string>
+    <string name="toulouse">Toulouse</string>
     <string name="vietnam">Vietnam</string>
     <string name="refresh">Refresh</string>
     <string name="setting">Setting</string>
     <string name="hanoi_vietnam">Hanoi, Vietnam</string>
     <string name="paris_france">Paris, France</string>
-    <string name="toulose_france">Toulose, France</string>
+    <string name="toulouse_france">Toulose, France</string>
+    <string name="refresh_message">Refreshing</string>
+    <string name="refresh_success">Successfully refreshed</string>
 </resources>

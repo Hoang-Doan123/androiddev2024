@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -85,7 +88,33 @@ public class WeatherActivity extends AppCompatActivity {
         // Refresh (icon always visible):
         if (id == R.id.refresh) {
             // Show a toast
-            Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
+
+            // Use thread and handler, simulate a network request and show on a toast
+            Handler handler = new Handler(Looper.getMainLooper()) {
+                @Override
+                public void handleMessage(Message msg) {
+                    String content = msg.getData().getString("server response");
+                    Toast.makeText(getBaseContext(), content, Toast.LENGTH_SHORT).show();
+                }
+            };
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Bundle bundle = new Bundle();
+                    bundle.putString("server response", getString(R.string.refresh_success));
+                    Message msg = new Message();
+                    msg.setData(bundle);
+                    handler.sendMessage(msg);
+                }
+            });
+            t.start();
+            Toast.makeText(getBaseContext(), R.string.refresh_message, Toast.LENGTH_LONG).show();
             return true;
         }
         // Settings (always in the overflow menu):
