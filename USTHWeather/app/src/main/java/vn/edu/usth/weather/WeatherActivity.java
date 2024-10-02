@@ -27,6 +27,9 @@ import java.util.Objects;
 
 public class WeatherActivity extends AppCompatActivity {
 
+    public static final String TAG = "Weather";
+    public static final String NETWORK_RESPONSE = "NETWORK_RESPONSE";
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,33 +91,7 @@ public class WeatherActivity extends AppCompatActivity {
         // Refresh (icon always visible):
         if (id == R.id.refresh) {
             // Show a toast
-            // Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
-
-            // Use thread and handler, simulate a network request and show on a toast
-            Handler handler = new Handler(Looper.getMainLooper()) {
-                @Override
-                public void handleMessage(Message msg) {
-                    String content = msg.getData().getString("server response");
-                    Toast.makeText(getBaseContext(), content, Toast.LENGTH_SHORT).show();
-                }
-            };
-            Thread t = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Bundle bundle = new Bundle();
-                    bundle.putString("server response", getString(R.string.refresh_success));
-                    Message msg = new Message();
-                    msg.setData(bundle);
-                    handler.sendMessage(msg);
-                }
-            });
-            t.start();
-            Toast.makeText(getBaseContext(), R.string.refresh_message, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
             return true;
         }
         // Settings (always in the overflow menu):
@@ -125,6 +102,41 @@ public class WeatherActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Use thread and handler, simulate a network request and show on a toast
+    public void request_network(){
+        // Handler
+        final Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                // This method is executed in main thread
+                String content = msg.getData().getString(NETWORK_RESPONSE);
+                Toast.makeText(WeatherActivity.this, content, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        // Thread
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // this method is run in a worker thread
+                try {
+                    // wait for 1 seconds to simulate a long network access
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // Assume that we got our data from server
+                Bundle bundle = new Bundle();
+                bundle.putString(NETWORK_RESPONSE, "Request Network");
+                // notify main thread
+                Message msg = new Message();
+                msg.setData(bundle);
+                handler.sendMessage(msg);
+            }
+        });
+        t.start();
     }
 
     @Override
