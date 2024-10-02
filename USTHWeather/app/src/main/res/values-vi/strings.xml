@@ -15,4 +15,9 @@
     <string name="france">Pháp</string>
     <string name="toulose">Toulose</string>
     <string name="vietnam">Việt Nam</string>
+    <string name="refresh">Làm mới</string>
+    <string name="setting">Cài đặt</string>
+    <string name="hanoi_vietnam">Hà Nội, Việt Nam</string>
+    <string name="paris_france">Paris, Pháp</string>
+    <string name="toulose_france">Toulose, Pháp</string>
 </resources>

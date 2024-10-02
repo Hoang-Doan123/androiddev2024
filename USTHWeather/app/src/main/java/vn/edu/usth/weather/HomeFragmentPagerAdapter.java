@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
-    private final String[] titles = new String[] { "Hanoi", "Paris", "Toulouse" };
+    private final String[] titles = new String[] { "Hanoi, Vietnam", "Paris, France", "Toulouse, France" };
     public HomeFragmentPagerAdapter(FragmentManager fm, int behaviorResumeOnlyCurrentFragment) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }

@@ -16,4 +16,7 @@
     <string name="vietnam">Vietnam</string>
     <string name="refresh">Refresh</string>
     <string name="setting">Setting</string>
+    <string name="hanoi_vietnam">Hanoi, Vietnam</string>
+    <string name="paris_france">Paris, France</string>
+    <string name="toulose_france">Toulose, France</string>
 </resources>

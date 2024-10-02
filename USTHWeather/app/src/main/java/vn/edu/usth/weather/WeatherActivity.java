@@ -82,19 +82,19 @@ public class WeatherActivity extends AppCompatActivity {
     // Add two actions
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-            // Refresh (icon always visible):
-            if (id == R.id.refresh) {
-                // Show a toast
-                Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-            // Settings (always in the overflow menu):
-            else if (id == R.id.setting) {
-                // Starts a new activity, PrefActivity
-                Intent intent = new Intent(this, PrefActivity.class);
-                startActivity(intent);
-                return true;
-            }
+        // Refresh (icon always visible):
+        if (id == R.id.refresh) {
+            // Show a toast
+            Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        // Settings (always in the overflow menu):
+        else if (id == R.id.setting) {
+            // Starts a new activity, PrefActivity
+            Intent intent = new Intent(this, PrefActivity.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
