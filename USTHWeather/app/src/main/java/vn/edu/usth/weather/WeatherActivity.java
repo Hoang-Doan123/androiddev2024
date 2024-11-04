@@ -3,6 +3,7 @@ package vn.edu.usth.weather;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -106,43 +107,66 @@ public class WeatherActivity extends AppCompatActivity {
 
     // Use thread and handler, simulate a network request and show on a toast
     public void request_network(){
-        // Handler
-        final Handler handler = new Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                // This method is executed in main thread
-                String content = msg.getData().getString(NETWORK_RESPONSE);
-                Toast.makeText(WeatherActivity.this, content, Toast.LENGTH_SHORT).show();
-            }
-        };
+//        // Handler
+//        final Handler handler = new Handler(Looper.getMainLooper()) {
+//            @Override
+//            public void handleMessage(Message msg) {
+//                // This method is executed in main thread
+//                String content = msg.getData().getString(NETWORK_RESPONSE);
+//                Toast.makeText(WeatherActivity.this, content, Toast.LENGTH_SHORT).show();
+//            }
+//        };
+//
+//        // Thread
+//        Thread t = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                // this method is run in a worker thread
+//                try {
+//                    // wait for 1 seconds to simulate a long network access
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                // Assume that we got our data from server
+//                Bundle bundle = new Bundle();
+//                bundle.putString(NETWORK_RESPONSE, "Request Network");
+//                // notify main thread
+//                Message msg = new Message();
+//                msg.setData(bundle);
+//                handler.sendMessage(msg);
+//            }
+//        });
+//        t.start();
 
-        // Thread
-        Thread t = new Thread(new Runnable() {
+        // «Upgrade» Thread/Handler combo with an AsyncTask
+        AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
+            // sleep() in doInBackground
             @Override
-            public void run() {
-                // this method is run in a worker thread
+            protected String doInBackground(Void... voids) {
                 try {
                     // wait for 1 seconds to simulate a long network access
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                // Assume that we got our data from server
-                Bundle bundle = new Bundle();
-                bundle.putString(NETWORK_RESPONSE, "Request Network");
-                // notify main thread
-                Message msg = new Message();
-                msg.setData(bundle);
-                handler.sendMessage(msg);
+                return "Request Network";
             }
-        });
-        t.start();
+
+            // Toast in onPostExecute()
+            @Override
+            protected void onPostExecute(String content) {
+                Toast.makeText(WeatherActivity.this, content, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        task.execute();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i("Start","Start");
+        request_network();
     }
 
     @Override
