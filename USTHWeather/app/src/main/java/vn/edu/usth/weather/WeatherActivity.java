@@ -28,6 +28,8 @@ import java.util.Objects;
 
 public class WeatherActivity extends AppCompatActivity {
 
+    private MediaPlayer mediaPlayer;
+
     public static final String TAG = "Weather";
     public static final String NETWORK_RESPONSE = "NETWORK_RESPONSE";
 
@@ -69,7 +71,7 @@ public class WeatherActivity extends AppCompatActivity {
         Objects.requireNonNull(tabLayout.getTabAt(1));
         Objects.requireNonNull(tabLayout.getTabAt(2));
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.music);
+        mediaPlayer = MediaPlayer.create(this, R.raw.music);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
 
@@ -178,13 +180,18 @@ public class WeatherActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i("Pause","Pause");
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i("Stop","Stop");
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
     @Override
