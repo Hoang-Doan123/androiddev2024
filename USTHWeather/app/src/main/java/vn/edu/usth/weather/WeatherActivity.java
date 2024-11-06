@@ -1,15 +1,13 @@
 package vn.edu.usth.weather;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +23,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.InputStream;
@@ -93,7 +96,8 @@ public class WeatherActivity extends AppCompatActivity {
         }
 
         // Start the AsyncTask to download the logo
-        new DownloadImageTask().execute();
+//        new DownloadImageTask().execute();
+        new DownloadImageTask(this);
 
         // Start AsyncTask for network request simulation
         new RequestNetworkTask().execute();
@@ -206,47 +210,88 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     // Perform a real network request to USTH’s server
-    private class DownloadImageTask extends AsyncTask<Void, Void, Bitmap> {
-        // Download USTH logo
-        @Override
-        protected Bitmap doInBackground(Void... voids) {
-            Bitmap bitmap = null;
-            try {
-                // Initialize URL
-                URL url = new URL("https://cdn.haitrieu.com/wp-content/uploads/2022/11/Logo-Truong-Dai-hoc-Khoa-hoc-va-Cong-nghe-Ha-Noi.png");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//    private class DownloadImageTask extends AsyncTask<Void, Void, Bitmap> {
+//        // Download USTH logo
+//        @Override
+//        protected Bitmap doInBackground(Void... voids) {
+//            Bitmap bitmap = null;
+//            try {
+//                // Initialize URL
+//                URL url = new URL("https://cdn.haitrieu.com/wp-content/uploads/2022/11/Logo-Truong-Dai-hoc-Khoa-hoc-va-Cong-nghe-Ha-Noi.png");
+//                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//
+//                connection.setRequestMethod("GET");
+//                connection.setDoInput(true);
+//                connection.connect();
+//
+//                // Receive response
+//                int response = connection.getResponseCode();
+//                Log.i("USTHWeather", "The response is: " + response);
+//
+//                if (response == HttpURLConnection.HTTP_OK) { // Check if response is OK
+//                    InputStream is = connection.getInputStream();
+//                    // Process image response
+//                    bitmap = BitmapFactory.decodeStream(is);
+//                    is.close(); // Close the InputStream
+//                }
+//
+//                connection.disconnect();
+//            } catch (Exception e) {
+//                Log.e("USTHWeather", "Error downloading image: " + e.getMessage());
+//            }
+//            return bitmap; // Return the bitmap
+//        }
+//
+//        // Show it on an ImageView of ForecastFragment
+//        @Override
+//        protected void onPostExecute(Bitmap bitmap) {
+//            if (bitmap != null && logoImageView != null) {
+//                logoImageView.setImageBitmap(bitmap); // Set the bitmap to the ImageView
+//                Toast.makeText(WeatherActivity.this, "Image Loaded", Toast.LENGTH_SHORT).show();
+//            } else {
+//                Toast.makeText(WeatherActivity.this, "Failed to load image", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
 
-                connection.setRequestMethod("GET");
-                connection.setDoInput(true);
-                connection.connect();
+    // «Upgrade» previous AsyncTask HttpURLConnection to Volley
+    private class DownloadImageTask  {
+        private final Context context;
+        private RequestQueue queue;
 
-                // Receive response
-                int response = connection.getResponseCode();
-                Log.i("USTHWeather", "The response is: " + response);
+        public DownloadImageTask(WeatherActivity weatherActivity) {
+            this.context = weatherActivity;
+            this.queue = Volley.newRequestQueue(context);
 
-                if (response == HttpURLConnection.HTTP_OK) { // Check if response is OK
-                    InputStream is = connection.getInputStream();
-                    // Process image response
-                    bitmap = BitmapFactory.decodeStream(is);
-                    is.close(); // Close the InputStream
-                }
+            Log.d("USTHWeather", "Starting image request...");
 
-                connection.disconnect();
-            } catch (Exception e) {
-                Log.e("USTHWeather", "Error downloading image: " + e.getMessage());
-            }
-            return bitmap; // Return the bitmap
-        }
+            // Create the image request
+            ImageRequest imageRequest = new ImageRequest(
+                    "https://cdn.haitrieu.com/wp-content/uploads/2022/11/Logo-Truong-Dai-hoc-Khoa-hoc-va-Cong-nghe-Ha-Noi.png",
+                    new Response.Listener<Bitmap>() {
+                        @Override
+                        public void onResponse(Bitmap response) {
+                            // Set the image in the ImageView
+                            if (logoImageView != null) {
+                                logoImageView.setImageBitmap(response);
+                                Toast.makeText(context, "Image Loaded", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    },
+                    0, 0, ImageView.ScaleType.CENTER,
+                    Bitmap.Config.ARGB_8888,
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("USTHWeather", "Error loading image: " + error.getMessage());
+                            Toast.makeText(context, "Failed to load image", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
 
-        // Show it on an ImageView of ForecastFragment
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            if (bitmap != null && logoImageView != null) {
-                logoImageView.setImageBitmap(bitmap); // Set the bitmap to the ImageView
-                Toast.makeText(WeatherActivity.this, "Image Loaded", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(WeatherActivity.this, "Failed to load image", Toast.LENGTH_SHORT).show();
-            }
+            Log.d("USTHWeather", "Adding image request to queue.");
+            // Add the request to the RequestQueue
+            queue.add(imageRequest);
         }
     }
 
